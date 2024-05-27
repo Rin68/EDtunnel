@@ -4,10 +4,10 @@
 // [Windows] Press "Win + R", input cmd and run:  Powershell -NoExit -Command "[guid]::NewGuid()"
 // [Linux] Run uuidgen in terminal
 // in this project, we use proxyIPs generated subsctiption link with pureIPs.
-const proxyIPs = ['cdn-all.xn--b6gac.eu.org', 'cdn.xn--b6gac.eu.org', 'cdn-b100.xn--b6gac.eu.org', 'edgetunnel.anycast.eu.org', 'cdn.anycast.eu.org'];
+const proxyIPs = ['8.219.111.147'];
 
 export let globalConfig = {
-	userID: 'd342d11e-d424-4583-b36e-524ab1f0afa4',
+	userID: 'a3090a61-0c4c-4cd2-8ab9-ed7667853a9c',
 
 	proxyIP: proxyIPs[Math.floor(Math.random() * proxyIPs.length)],
 
@@ -223,7 +223,7 @@ export function setConfigFromEnv(request, env) {
 	// Create a vless:// URL based on the request parameters
 	// Example: vless://uuid@domain.name:port?type=ws&security=tls
 	// Default port is 443 for vless and 80 for vless over ws
-	const vlessUrl = env.VLESS || `vless://${uuid}@${sni}:443?type=ws&security=tls&path=${vlessPath}`;
+	const vlessUrl = env.VLESS || `vless://${uuid}@${sni}:80?type=ws&security=tls&path=${vlessPath}`;
 
 
 	globalConfig.userID = env.UUID || globalConfig.userID;
@@ -1680,7 +1680,7 @@ function parseVlessString(url) {
  * @returns {string} - The generated HTML string containing the VLESS configuration.
  */
 function getVLESSConfig(hostName) {
-	const commonUrlPart = `:443?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2048#${hostName}`;
+	const commonUrlPart = `:80?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2048#${hostName}`;
 	const separator = "---------------------------------------------------------------";
 	const hashSeparator = "################################################################";
 
